@@ -81,7 +81,7 @@ const PageCard = forwardRef<HTMLTextAreaElement, PageCardProps>(
         <div className="flex-1 px-6 pb-4 overflow-hidden">
           <textarea
             ref={textareaRef}
-            className="ruled-lines w-full h-full resize-none bg-transparent text-ink font-serif text-base outline-none overflow-hidden placeholder:text-accent/50"
+            className="w-full h-full resize-none bg-transparent text-ink font-serif text-base leading-relaxed outline-none overflow-hidden placeholder:text-accent/50"
             value={content}
             onChange={handleChange}
             onKeyDown={handleKeyDown}

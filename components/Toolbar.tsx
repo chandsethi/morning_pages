@@ -37,15 +37,20 @@ export default function Toolbar({ selectedDate, onDateChange, pages }: ToolbarPr
 
   return (
     <header className="flex items-center justify-between px-4 lg:px-6 h-14 shrink-0">
-      <div className="flex items-center gap-3">
-        <h1 className="text-lg font-serif text-ink font-medium tracking-tight">
-          Morning Pages
-        </h1>
-        {!isToday && (
-          <span className="text-sm text-accent italic">
-            {formatDisplayDate(selectedDate)}
-          </span>
-        )}
+      <div className="flex flex-col justify-center">
+        <div className="flex items-center gap-3">
+          <h1 className="text-lg font-serif text-ink font-medium tracking-tight">
+            Morning Pages
+          </h1>
+          {!isToday && (
+            <span className="text-sm text-accent italic">
+              {formatDisplayDate(selectedDate)}
+            </span>
+          )}
+        </div>
+        <p className="text-xs text-accent">
+          No backspace allowed. Completely private. Write freely, daily.
+        </p>
       </div>
       <div className="flex items-center gap-3">
         <input

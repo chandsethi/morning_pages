@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-paper: #FAF6F0;
+  --color-ink: #3B3230;
+  --color-surface: #F2EDE7;
+  --color-accent: #B8A08A;
+  --color-accent-light: #D4C5B5;
+  --font-serif: Georgia, "Times New Roman", serif;
+}
+
+body {
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-serif);
+}
+
+/* Ruled lines on textareas */
+.ruled-lines {
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent calc(1.75rem - 1px),
+    var(--color-accent-light) calc(1.75rem - 1px),
+    var(--color-accent-light) 1.75rem
+  );
+  background-position-y: 0.25rem;
+  line-height: 1.75rem;
+}
+
+/* Hide scrollbar but allow scroll on mobile */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}

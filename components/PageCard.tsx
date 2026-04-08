@@ -78,9 +78,12 @@ const PageCard = forwardRef<HTMLTextAreaElement, PageCardProps>(
             Page {pageIndex + 1}
           </span>
         </div>
-        <div className="flex-1 px-6 pb-4 overflow-hidden relative">
-          {pageIndex === 0 && content === "" && (
-            <div className="absolute inset-0 px-0 pb-4 pointer-events-none text-accent/70 font-serif text-base leading-relaxed select-none">
+        <div className="flex-1 px-6 pb-4 overflow-hidden">
+          {pageIndex === 0 && content === "" && !readOnly ? (
+            <div
+              className="w-full h-full text-accent/70 font-serif text-base leading-relaxed cursor-text"
+              onClick={() => textareaRef.current?.focus()}
+            >
               <p><em>What&apos;s Morning Pages?</em></p>
               <p className="mt-2">Morning pages is a daily journaling practice of writing three pages of unfiltered thoughts, first thing in the morning. No agenda. No editing. Just write whatever comes to your head.</p>
               <p className="mt-4"><em>What it does to you?</em></p>
@@ -88,20 +91,31 @@ const PageCard = forwardRef<HTMLTextAreaElement, PageCardProps>(
               <p className="mt-4"><em>How this app helps?</em></p>
               <p className="mt-2">This app keeps you honest: no backspace, no deleting. A fresh canvas opens every day. All this in a 100% private manner.</p>
               <p className="mt-4">Don&apos;t think. Start typing.</p>
+              <textarea
+                ref={textareaRef}
+                className="sr-only"
+                value={content}
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+                onBeforeInput={handleBeforeInput}
+                onCut={handleCut}
+                autoFocus
+              />
             </div>
+          ) : (
+            <textarea
+              ref={textareaRef}
+              className="w-full h-full resize-none bg-transparent text-ink font-serif text-base leading-relaxed outline-none overflow-hidden"
+              value={content}
+              onChange={handleChange}
+              onKeyDown={handleKeyDown}
+              onBeforeInput={handleBeforeInput}
+              onCut={handleCut}
+              readOnly={readOnly}
+              spellCheck={false}
+              autoCapitalize="sentences"
+            />
           )}
-          <textarea
-            ref={textareaRef}
-            className="w-full h-full resize-none bg-transparent text-ink font-serif text-base leading-relaxed outline-none overflow-hidden"
-            value={content}
-            onChange={handleChange}
-            onKeyDown={handleKeyDown}
-            onBeforeInput={handleBeforeInput}
-            onCut={handleCut}
-            readOnly={readOnly}
-            spellCheck={false}
-            autoCapitalize="sentences"
-          />
         </div>
       </div>
     );

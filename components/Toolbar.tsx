@@ -3,13 +3,16 @@
 import { useState, useCallback } from "react";
 import { getTodayString, formatDisplayDate } from "@/lib/dates";
 
+const DEV_MODE = true; // Set to false before public release
+
 interface ToolbarProps {
   selectedDate: string;
   onDateChange: (date: string) => void;
   pages: [string, string, string];
+  onReset?: () => void;
 }
 
-export default function Toolbar({ selectedDate, onDateChange, pages }: ToolbarProps) {
+export default function Toolbar({ selectedDate, onDateChange, pages, onReset }: ToolbarProps) {
   const [copied, setCopied] = useState(false);
   const isToday = selectedDate === getTodayString();
 
@@ -80,6 +83,14 @@ export default function Toolbar({ selectedDate, onDateChange, pages }: ToolbarPr
           </svg>
           {copied ? "Copied!" : "Copy all"}
         </button>
+        {DEV_MODE && onReset && (
+          <button
+            onClick={onReset}
+            className="text-xs text-accent/50 hover:text-accent transition-colors font-serif cursor-pointer"
+          >
+            Reset
+          </button>
+        )}
       </div>
     </header>
   );

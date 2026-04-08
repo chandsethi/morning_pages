@@ -64,5 +64,12 @@ export function useJournal(selectedDate: string) {
     [scheduleSave]
   );
 
-  return { pages, setPageContent, isToday };
+  const resetToday = useCallback(() => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+    const key = `mp_${getTodayString()}`;
+    localStorage.removeItem(key);
+    setPages(["", "", ""]);
+  }, []);
+
+  return { pages, setPageContent, isToday, resetToday };
 }

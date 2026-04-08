@@ -80,20 +80,19 @@ const PageCard = forwardRef<HTMLTextAreaElement, PageCardProps>(
         </div>
         <div className="flex-1 px-6 pb-4 overflow-hidden">
           {pageIndex === 0 && content === "" && !readOnly ? (
-            <div
-              className="w-full h-full text-accent/70 font-serif text-base leading-relaxed cursor-text"
-              onClick={() => textareaRef.current?.focus()}
-            >
-              <p><em>What&apos;s Morning Pages?</em></p>
-              <p className="mt-2">Morning pages is a daily journaling practice of writing three pages of unfiltered thoughts, first thing in the morning. No agenda. No editing. Just write whatever comes to your head.</p>
-              <p className="mt-4"><em>What it does to you?</em></p>
-              <p className="mt-2">Over time, it clears mental clutter, sparks creativity, and builds self-awareness.</p>
-              <p className="mt-4"><em>How this app helps?</em></p>
-              <p className="mt-2">This app keeps you honest: no backspace, no deleting. A fresh canvas opens every day. All this in a 100% private manner.</p>
-              <p className="mt-4">Don&apos;t think. Start typing.</p>
+            <div className="w-full h-full relative cursor-text" onClick={() => textareaRef.current?.focus()}>
+              <div className="text-accent/70 font-serif text-base leading-relaxed">
+                <p><em>What&apos;s Morning Pages?</em></p>
+                <p className="mt-2">Morning pages is a daily journaling practice of writing three pages of unfiltered thoughts, first thing in the morning. No agenda. No editing. Just write whatever comes to your head.</p>
+                <p className="mt-4"><em>What it does to you?</em></p>
+                <p className="mt-2">Over time, it clears mental clutter, sparks creativity, and builds self-awareness.</p>
+                <p className="mt-4"><em>How this app helps?</em></p>
+                <p className="mt-2">This app keeps you honest: no backspace, no deleting. A fresh canvas opens every day. All this in a 100% private manner.</p>
+                <p className="mt-4">Don&apos;t think. Start typing.</p>
+              </div>
               <textarea
                 ref={textareaRef}
-                className="sr-only"
+                className="absolute top-0 left-0 w-full h-full opacity-0 resize-none"
                 value={content}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}

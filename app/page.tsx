@@ -8,7 +8,7 @@ import Toolbar from "@/components/Toolbar";
 
 export default function Home() {
   const [selectedDate, setSelectedDate] = useState(getTodayString);
-  const { pages, setPageContent, isToday, resetToday } = useJournal(selectedDate);
+  const { pages, setPageContent, isToday } = useJournal(selectedDate);
 
   const page1Ref = useRef<HTMLTextAreaElement>(null);
   const page2Ref = useRef<HTMLTextAreaElement>(null);
@@ -32,7 +32,6 @@ export default function Home() {
         selectedDate={selectedDate}
         onDateChange={setSelectedDate}
         pages={pages}
-        onReset={resetToday}
       />
       <main className="flex-1 flex flex-col lg:grid lg:grid-cols-3 gap-4 lg:gap-6 p-4 lg:p-6 overflow-y-auto lg:overflow-hidden hide-scrollbar">
         {pages.map((content, i) => (

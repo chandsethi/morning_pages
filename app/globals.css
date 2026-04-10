@@ -13,6 +13,7 @@ body {
   background: var(--color-surface);
   color: var(--color-ink);
   font-family: var(--font-serif);
+  zoom: 1.15;
 }
 
 /* Hide scrollbar but allow scroll on mobile */

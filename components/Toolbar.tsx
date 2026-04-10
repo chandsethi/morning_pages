@@ -3,16 +3,13 @@
 import { useState, useCallback, useRef } from "react";
 import { getTodayString, formatDisplayDate } from "@/lib/dates";
 
-const DEV_MODE = true; // Set to false before public release
-
 interface ToolbarProps {
   selectedDate: string;
   onDateChange: (date: string) => void;
   pages: [string, string, string];
-  onReset?: () => void;
 }
 
-export default function Toolbar({ selectedDate, onDateChange, pages, onReset }: ToolbarProps) {
+export default function Toolbar({ selectedDate, onDateChange, pages }: ToolbarProps) {
   const [copied, setCopied] = useState(false);
   const isToday = selectedDate === getTodayString();
   const dateInputRef = useRef<HTMLInputElement>(null);
@@ -40,7 +37,7 @@ export default function Toolbar({ selectedDate, onDateChange, pages, onReset }: 
   );
 
   return (
-    <header className="flex items-center justify-between px-4 lg:px-6 h-14 shrink-0">
+    <header className="flex items-start justify-between px-4 lg:px-6 py-3 shrink-0">
       <div className="flex flex-col justify-center">
         <div className="flex items-center gap-3">
           <h1 className="text-lg font-serif text-ink font-medium tracking-tight">
@@ -52,11 +49,13 @@ export default function Toolbar({ selectedDate, onDateChange, pages, onReset }: 
             </span>
           )}
         </div>
-        <p className="text-xs text-accent">
-          No backspace allowed. Completely private. Write freely, daily.
+        <p className="text-xs text-ink/70 max-w-xs lg:max-w-md leading-relaxed">
+          A daily journaling practice to write 3 pages of free flowing thoughts without thinking too much.
+          <br />
+          To help you do that, we don&apos;t let you delete what you write. Everything you write is completely private.
         </p>
       </div>
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 shrink-0">
         <button
           type="button"
           onClick={() => dateInputRef.current?.showPicker()}
@@ -109,14 +108,6 @@ export default function Toolbar({ selectedDate, onDateChange, pages, onReset }: 
           </svg>
           <span className="hidden lg:inline">{copied ? "Copied!" : "Copy all"}</span>
         </button>
-        {DEV_MODE && onReset && (
-          <button
-            onClick={onReset}
-            className="text-xs text-accent/50 hover:text-accent transition-colors font-serif cursor-pointer"
-          >
-            Reset
-          </button>
-        )}
       </div>
     </header>
   );

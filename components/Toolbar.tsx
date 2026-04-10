@@ -68,7 +68,7 @@ export default function Toolbar({ selectedDate, onDateChange, pages }: ToolbarPr
           href="https://buymeacoffee.com/chand"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-xs text-ink underline font-serif hover:text-ink/70 transition-colors"
+          className="text-sm text-ink no-underline border border-accent/30 rounded-md px-3 py-1 hover:bg-accent/10 transition-colors font-serif"
         >
           Buy me a coffee
         </a>
